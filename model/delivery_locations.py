@@ -27,12 +27,16 @@ def get_distances(file_name):
 # in order to create delivery points-vertices and connect them
 # Complexity is O(N^2)
 
-# def set_delivery_locations(file_name):
-#     delivery_data = get_distances(file_name)
-#     distances = Graph()
-#
-#     for line in delivery_data:
-#         distances.add_location(line[1]) # this location is a street address
+def set_delivery_locations(file_name):
+    delivery_data = get_distances(file_name)
+    distances = Graph()
+
+    for line in delivery_data:
+        distances.add_location(line[1])  # this location is a street address
 
     # it will start grabbing distances from distances file
+    for line in delivery_data:
+        for i in range(3, len(line)):  # starts from the third one which is the distance column
+            distances.add_distance(line[1], delivery_data[i - 3][1], float(line[i]))
 
+    return distances
