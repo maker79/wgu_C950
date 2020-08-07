@@ -63,4 +63,5 @@ def get_package_info(file_name):
 
 list_of_packages = get_package_info(
     u'C:\\Users\\Vladan\\PycharmProjects\\TSP_data_structures_and_algorithms_II\\data\\package_file.csv')
-print(list_of_packages.table)
+
+# print(list_of_packages.table)

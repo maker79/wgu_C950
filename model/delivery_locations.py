@@ -40,3 +40,9 @@ def set_delivery_locations(file_name):
             distances.add_distance(line[1], delivery_data[i - 3][1], float(line[i]))
 
     return distances
+
+
+locations = set_delivery_locations(
+    u'C:\\Users\\Vladan\\PycharmProjects\\TSP_data_structures_and_algorithms_II\\data\\distances_file.csv')
+
+# print(locations.distance)
