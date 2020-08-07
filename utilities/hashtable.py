@@ -50,7 +50,7 @@ class PackageHashTable:
 # Complexity O(N)
 def get_package_info(file_name):
     packages_list = PackageHashTable()
-    with open(file_name) as csv_file:
+    with open(file_name, 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
         # the next will skip over headers and start reading from 1st actual package, line 2
         next(csv_reader)
