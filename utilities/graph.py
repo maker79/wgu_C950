@@ -23,6 +23,6 @@ class Graph:
 
     def relate_package(self, hash_table):
 
-        for bucket in hash_table:
+        for bucket in hash_table.table:
             for item in bucket:
                 self.drop_locations[item[1]].append(item)

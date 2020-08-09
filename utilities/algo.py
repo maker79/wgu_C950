@@ -11,7 +11,7 @@ from utilities.graph import Graph
 
 def greedy_algorithm_for_shortest_distance(route):
     starting_point = '4001 South 700 East'
-    distances = locations.distance8
+    distances = locations.distance
     route_to_sort = route
 
     # greedy algo for shortest distance will start at the hub and build a better route

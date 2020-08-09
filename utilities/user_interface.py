@@ -1,6 +1,8 @@
 # This method will define user interface from where all the requirements
 # regarding packages and trucks can be checked
 # It will be called from main() function located inside main.py
+from utilities.deliveries import load_truck_get_the_route
+
 
 def user_interface():
     entry_point = input("Welcome to the main screen. Please, choose your options:\n"
@@ -15,6 +17,7 @@ def user_interface():
 
     elif entry_point == '1':
         print('TIME: 08:00am -- Packages are now loaded.')
+        load_truck_get_the_route()
 
 
 
