@@ -64,3 +64,129 @@ def make_deliveries():
     print('Packages that were delivered using truck number 1: ', *truck_1.loaded_packages, sep='\n')
 
     # Deliveries for truck number 2
+    start_truck_number_2 = datetime(2020, 8, 9, 9, 5)
+    truck_2.start_time = start_truck_number_2
+    truck_2.current_time = start_truck_number_2
+
+    for i in range(0, len(truck_2.truck_route) - 1):
+        distance = mi_between_dlv_points[truck_2.truck_route[i], truck_2.truck_route[i + 1]]
+        speed = truck_2.truck_speed
+        minutes = distance / speed
+        time_delivered = truck_2.current_time + minutes
+        truck_2.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute)
+        delivery_update = 'Package delivered at :' + str(time_delivered)
+
+        for package in truck_2.loaded_packages:
+            if truck_2.truck_route[i + 1] == package[1]:
+                package[8] = delivery_update
+
+    truck_2.end_time = truck_2.current_time
+
+    print('Packages that were delivered using truck number 1: ', *truck_2.loaded_packages, sep='\n')
+
+    # Deliveries for truck number 3
+    start_truck_number_3 = truck_1.end_time
+    truck_3.start_time = start_truck_number_3
+    truck_3.current_time = start_truck_number_3
+
+    for i in range(0, len(truck_3.truck_route) - 1):
+        distance = mi_between_dlv_points[truck_3.truck_route[i], truck_3.truck_route[i + 1]]
+        speed = truck_3.truck_speed
+        minutes = distance / speed
+        time_delivered = truck_3.current_time + minutes
+        truck_3.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute)
+        delivery_update = 'Package delivered at :' + str(time_delivered)
+
+        for package in truck_3.loaded_packages:
+            if truck_3.truck_route[i + 1] == package[1]:
+                package[8] = delivery_update
+
+    truck_3.end_time = truck_3.current_time
+
+    print('Packages that were delivered using truck number 1: ', *truck_3.loaded_packages, sep='\n')
+
+
+# This method will provide package status at the particular time
+# Complexity is O(N^2)
+def current_package_status(hour, minute):
+    mi_between_dlv_points = locations.distance
+    del_time = datetime(2020, 8, 9, hour, minute)
+
+    # Truck number 1
+    start_truck_number_1 = datetime(2020, 8, 9, 8, 0)
+    truck_1.start_time = start_truck_number_1
+    truck_1.current_time = start_truck_number_1
+    package_out_for_delivery(truck_1.loaded_packages)
+
+    for i in range(0, len(truck_1.truck_route) - 1):
+        distance = mi_between_dlv_points[truck_1.truck_route[i], truck_1.truck_route[i + 1]]
+        speed = truck_1.truck_speed
+        minutes = distance / speed
+        time_delivered = truck_1.current_time + minutes
+
+        if time_delivered < del_time.time():
+            truck_1.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute)
+            delivery_update = 'Package delivered at :' + str(time_delivered)
+
+            for package in truck_1.loaded_packages:
+                if truck_1.truck_route[i + 1] == package[1]:
+                    package[8] = delivery_update
+
+    truck_1.end_time = truck_1.current_time
+
+    print('Packages that were delivered using truck number 1: ', *truck_1.loaded_packages, sep='\n')
+
+    # Truck number 2
+    start_truck_number_2 = datetime(2020, 8, 9, 9, 5)
+    truck_2.start_time = start_truck_number_2
+    truck_2.current_time = start_truck_number_2
+    package_out_for_delivery(truck_2.loaded_packages)
+
+    for i in range(0, len(truck_2.truck_route) - 1):
+        distance = mi_between_dlv_points[truck_2.truck_route[i], truck_2.truck_route[i + 1]]
+        speed = truck_2.truck_speed
+        minutes = distance / speed
+        time_delivered = truck_2.current_time + minutes
+
+        if time_delivered < del_time.time():
+            truck_2.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute)
+            delivery_update = 'Package delivered at :' + str(time_delivered)
+
+            for package in truck_2.loaded_packages:
+                if truck_2.truck_route[i + 1] == package[1]:
+                    package[8] = delivery_update
+
+    truck_2.end_time = truck_2.current_time
+
+    print('Packages that were delivered using truck number 1: ', *truck_2.loaded_packages, sep='\n')
+
+    # Truck number 3
+    start_truck_number_3 = truck_1.end_time
+    truck_3.start_time = start_truck_number_3
+    truck_3.current_time = start_truck_number_3
+    package_out_for_delivery(truck_3.loaded_packages)
+
+    for i in range(0, len(truck_3.truck_route) - 1):
+        distance = mi_between_dlv_points[truck_3.truck_route[i], truck_3.truck_route[i + 1]]
+        speed = truck_3.truck_speed
+        minutes = distance / speed
+        time_delivered = truck_3.current_time + minutes
+
+        if time_delivered < del_time.time():
+            truck_3.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute)
+            delivery_update = 'Package delivered at :' + str(time_delivered)
+
+            for package in truck_3.loaded_packages:
+                if truck_3.truck_route[i + 1] == package[1]:
+                    package[8] = delivery_update
+
+    truck_3.end_time = truck_3.current_time
+
+    print('Packages that were delivered using truck number 1: ', *truck_3.loaded_packages, sep='\n')
+
+
+# This method will help change status of the package on the truck
+# Complexity is O(N)
+def package_out_for_delivery(packages):
+    for package in packages:
+        package[7] = 'Out for delivery'
