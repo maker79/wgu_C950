@@ -1,5 +1,5 @@
 from model.delivery_locations import *
-from utilities.graph import *
+from utilities.graph import Graph
 
 
 # This method will implement greedy algorithm that will be used
@@ -11,7 +11,7 @@ from utilities.graph import *
 
 def greedy_algorithm_for_shortest_distance(route):
     starting_point = '4001 South 700 East'
-    distances = locations.distance
+    distances = locations.distance8
     route_to_sort = route
 
     # greedy algo for shortest distance will start at the hub and build a better route
