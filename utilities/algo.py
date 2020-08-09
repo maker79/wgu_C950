@@ -38,4 +38,4 @@ def greedy_algorithm_for_shortest_distance(route):
 
         route_to_sort.remove(beginning[1])
 
-    return better_route
+    return better_route  # the better rout is returned
