@@ -45,4 +45,4 @@ def set_delivery_locations(file_name):
 locations = set_delivery_locations(
     u'C:\\Users\\Vladan\\PycharmProjects\\TSP_data_structures_and_algorithms_II\\data\\distances_file.csv')
 
-# print(locations.distance)
+print(locations.distance)

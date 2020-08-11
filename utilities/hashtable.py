@@ -4,11 +4,9 @@ import csv
 # The goal of this hash table is to improve the speed of accessing the packages
 class PackageHashTable:
 
-    def __init__(self):
-        self.capacity = 32
+    def __init__(self, capacity=10):
         self.table = []
-
-        for i in range(self.capacity):
+        for i in range(capacity):
             self.table.append([])
 
     # This method will add a package into the Hashtable based on the key-index 0(PackageId)
@@ -18,6 +16,10 @@ class PackageHashTable:
         value_package[0] = int(value_package[0])
         bucket_space = key % len(self.table)
         self.table[bucket_space].append(value_package)
+        if value_package[7] != 'Delayed on flight---will not arrive to depot until 9:05 am':
+            value_package.append('Package at HUB')
+        if value_package[7] == 'Delayed on flight---will not arrive to depot until 9:05 am':
+            value_package.append('Package delayed on flight-not in HUB')
 
     # This method will search for an existing package from the table, based on package Id
     # Complexity O(N)
