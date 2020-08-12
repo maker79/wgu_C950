@@ -1,10 +1,12 @@
-from model.truck import load_truck_get_the_route
-from utilities.reports import current_package_status
+from deliveries_and_reports.deliveries import load_truck_get_the_route
+from deliveries_and_reports.reports import current_package_status
 
 
 # This method will define user interface from where all the requirements
 # regarding packages and trucks can be checked
 # It will be called from main() function located inside main.py
+
+
 def user_interface():
     entry_point = input("Welcome to the main screen. Please, choose your options:\n"
                         "Enter 0 - leave the program\n"
@@ -30,4 +32,4 @@ def user_interface():
             SystemExit
 
         if submenu_1 == '1':
-            current_package_status(9, 20)
+            current_package_status(9, 20, 0)

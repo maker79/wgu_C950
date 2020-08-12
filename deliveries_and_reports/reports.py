@@ -1,9 +1,8 @@
 # This file contains methods that are responsible for reporting and displaying confirmation
 # that all the requirements are met(ex. mileage is under 145mi, all packages are delivered on time...)
-
+from deliveries_and_reports.deliveries import *
 from model.delivery_locations import *
-from datetime import *
-from model.truck import truck_1, truck_2, truck_3
+from datetime import datetime, timedelta
 
 
 # This method will get the miles traveled by an individual truck which will later help to get
@@ -48,9 +47,11 @@ def make_deliveries():
     for i in range(0, len(truck_1.truck_route) - 1):
         distance = mi_between_dlv_points[truck_1.truck_route[i], truck_1.truck_route[i + 1]]
         speed = truck_1.truck_speed
-        minutes = round(distance / speed)
-        time_delivered = add_minutes(truck_1.current_time, minutes)
-        truck_1.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute)
+        minutes = distance / speed
+        add_seconds = round(minutes * 60, 2)
+        time_delivered = add_seconds_to_time(truck_1.current_time, add_seconds)
+        truck_1.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute,
+                                        time_delivered.second)
         delivery_update = 'Package delivered at :', str(time_delivered)
 
         for package in truck_1.loaded_packages:
@@ -69,9 +70,11 @@ def make_deliveries():
     for i in range(0, len(truck_2.truck_route) - 1):
         distance = mi_between_dlv_points[truck_2.truck_route[i], truck_2.truck_route[i + 1]]
         speed = truck_2.truck_speed
-        minutes = round(distance / speed)
-        time_delivered = add_minutes(truck_2.current_time, minutes)
-        truck_2.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute)
+        minutes = distance / speed
+        add_seconds = round(minutes * 60, 2)
+        time_delivered = add_seconds_to_time(truck_2.current_time, add_seconds)
+        truck_2.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute,
+                                        time_delivered.second)
         delivery_update = 'Package delivered at :', str(time_delivered)
 
         for package in truck_2.loaded_packages:
@@ -90,10 +93,12 @@ def make_deliveries():
     for i in range(0, len(truck_3.truck_route) - 1):
         distance = mi_between_dlv_points[truck_3.truck_route[i], truck_3.truck_route[i + 1]]
         speed = truck_3.truck_speed
-        minutes = round(distance / speed)
-        time_delivered = add_minutes(truck_3.current_time, minutes)
-        truck_3.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute)
-        delivery_update = 'Package delivered at :' + str(time_delivered)
+        minutes = distance / speed
+        add_seconds = round(minutes * 60, 2)
+        time_delivered = add_seconds_to_time(truck_3.current_time, add_seconds)
+        truck_3.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute,
+                                        time_delivered.second)
+        delivery_update = 'Package delivered at : ', str(time_delivered)
 
         for package in truck_3.loaded_packages:
             if truck_3.truck_route[i + 1] == package[1]:
@@ -106,12 +111,12 @@ def make_deliveries():
 
 # This method will provide package status at the particular time
 # Complexity is O(N^2)
-def current_package_status(hr, mi):
+def current_package_status(hr, mi, sec):
     mi_between_dlv_points = locations.distance
-    truck_time = datetime(2020, 8, 9, hr, mi)
+    truck_time = datetime(2020, 8, 9, hr, mi, sec)
 
     # Truck number 1
-    start_truck_number_1 = datetime(2020, 8, 9, 8, 0)
+    start_truck_number_1 = datetime(2020, 8, 9, 8, 0, 0)
     truck_1.start_time = start_truck_number_1
     truck_1.current_time = start_truck_number_1
     package_out_for_delivery(truck_1.loaded_packages)
@@ -119,11 +124,13 @@ def current_package_status(hr, mi):
     for i in range(0, len(truck_1.truck_route) - 1):
         distance = mi_between_dlv_points[truck_1.truck_route[i], truck_1.truck_route[i + 1]]
         speed = truck_1.truck_speed
-        minutes = round(distance / speed)
-        time_delivered = add_minutes(truck_1.current_time, minutes)
+        minutes = distance / speed
+        add_seconds = round(minutes * 60, 2)
+        time_delivered = add_seconds_to_time(truck_1.current_time, add_seconds)
 
         if time_delivered < truck_time.time():
-            truck_1.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute)
+            truck_1.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute,
+                                            time_delivered.second)
             delivery_update = 'Package delivered at: ', str(time_delivered)
 
             for package in truck_1.loaded_packages:
@@ -136,7 +143,7 @@ def current_package_status(hr, mi):
           '*****************************************************', *truck_1.loaded_packages, sep='\n')
 
     # Truck number 2
-    start_truck_number_2 = datetime(2020, 8, 9, 9, 5)
+    start_truck_number_2 = datetime(2020, 8, 9, 9, 5, 0)
     truck_2.start_time = start_truck_number_2
     truck_2.current_time = start_truck_number_2
     package_out_for_delivery(truck_2.loaded_packages)
@@ -144,11 +151,13 @@ def current_package_status(hr, mi):
     for i in range(0, len(truck_2.truck_route) - 1):
         distance = mi_between_dlv_points[truck_2.truck_route[i], truck_2.truck_route[i + 1]]
         speed = truck_2.truck_speed
-        minutes = round(distance / speed)
-        time_delivered = add_minutes(truck_2.current_time, minutes)
+        minutes = distance / speed
+        add_seconds = round(minutes * 60, 2)
+        time_delivered = add_seconds_to_time(truck_2.current_time, add_seconds)
 
         if time_delivered < truck_time.time():
-            truck_2.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute)
+            truck_2.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute,
+                                            time_delivered.second)
             delivery_update = 'Package delivered at:', str(time_delivered)
 
             for package in truck_2.loaded_packages:
@@ -169,11 +178,13 @@ def current_package_status(hr, mi):
     for i in range(0, len(truck_3.truck_route) - 1):
         distance = mi_between_dlv_points[truck_3.truck_route[i], truck_3.truck_route[i + 1]]
         speed = truck_3.truck_speed
-        minutes = round(distance / speed)
-        time_delivered = add_minutes(truck_3.current_time, minutes)
+        minutes = distance / speed
+        add_seconds = round(minutes * 60, 2)
+        time_delivered = add_seconds_to_time(truck_3.current_time, add_seconds)
 
         if time_delivered < truck_time.time():
-            truck_3.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute)
+            truck_3.current_time = datetime(2020, 8, 9, time_delivered.hour, time_delivered.minute,
+                                            time_delivered.second)
             delivery_update = 'Package delivered at:', str(time_delivered)
 
             for package in truck_3.loaded_packages:
@@ -194,7 +205,7 @@ def package_out_for_delivery(packages):
 
 
 # This method will help to get the time for the particular package delivery
-def add_minutes(truck_time, minutes):
-    delivery_date = datetime(2020, 8, 9, truck_time.hour, truck_time.minute)
-    delivery_date = delivery_date + timedelta(minutes=minutes)
+def add_seconds_to_time(truck_time, seconds):
+    delivery_date = datetime(2020, 8, 9, truck_time.hour, truck_time.minute, truck_time.second)
+    delivery_date = delivery_date + timedelta(seconds=seconds)
     return delivery_date.time()

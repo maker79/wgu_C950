@@ -4,8 +4,9 @@ import csv
 # The goal of this hash table is to improve the speed of accessing the packages
 class PackageHashTable:
 
-    def __init__(self, capacity=10):
+    def __init__(self, capacity=32):
         self.table = []
+
         for i in range(capacity):
             self.table.append([])
 
@@ -29,11 +30,11 @@ class PackageHashTable:
         bucket_list = self.table[bucket_space]
 
         # loop through the list from one bucket space to find a package id
+        # if the package gets found it will get returned, otherwise returns None
         for package_id in bucket_list:
             if package_id[0] == key:
                 return package_id
-            else:
-                return False
+        return None
 
     # This method will look for package Id and remove it from the table
     # Complexity O(N)
@@ -52,18 +53,23 @@ class PackageHashTable:
 # Complexity O(N)
 def get_package_info(file_name):
     packages_list = PackageHashTable()
-    with open(file_name, 'r') as csv_file:
+    with open(file_name) as csv_file:
         csv_reader = csv.reader(csv_file)
         # the next will skip over headers and start reading from 1st actual package, line 2
-        next(csv_reader)
+        next(csv_reader, None)
 
         for line in csv_reader:
             packages_list.add_package(int(line[0]), line)  # adding package Id as an integer
 
-        return packages_list
+    return packages_list
 
 
 list_of_packages = get_package_info(
     u'C:\\Users\\Vladan\\PycharmProjects\\TSP_data_structures_and_algorithms_II\\data\\package_file.csv')
 
+
 # print(list_of_packages.table)
+
+def get_package_by_id(package_info):
+    package_found = list_of_packages.get_package(package_info)
+    print(package_found)

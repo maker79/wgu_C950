@@ -13,7 +13,7 @@ import csv
 def get_distances(file_name):
     distance_data = []
 
-    with open(file_name, 'r') as distance_file:
+    with open(file_name) as distance_file:
         csv_reader = csv.reader(distance_file)
         next(csv_reader, None)
 
@@ -45,4 +45,3 @@ def set_delivery_locations(file_name):
 locations = set_delivery_locations(
     u'C:\\Users\\Vladan\\PycharmProjects\\TSP_data_structures_and_algorithms_II\\data\\distances_file.csv')
 
-print(locations.distance)

@@ -1,5 +1,4 @@
 from model.delivery_locations import *
-from utilities.graph import Graph
 
 
 # This method will implement greedy algorithm that will be used
@@ -9,10 +8,10 @@ from utilities.graph import Graph
 # among deliveries based on the shortest distance
 # Complexity is O(N^2)
 
-def greedy_algorithm_for_shortest_distance(route):
+def greedy_algorithm_for_shortest_distance(truck_route):
     starting_point = '4001 South 700 East'
     distances = locations.distance
-    route_to_sort = route
+    route_to_sort = truck_route
 
     # greedy algo for shortest distance will start at the hub and build a better route
     better_route = [starting_point]
@@ -33,8 +32,8 @@ def greedy_algorithm_for_shortest_distance(route):
             if distance < beginning[0] and distance != 0:
                 beginning = [distance, del_point]
 
-        if beginning[1] not in route_to_sort:
-            route_to_sort.append(beginning[1])
+        if beginning[1] not in better_route:
+            better_route.append(beginning[1])
 
         route_to_sort.remove(beginning[1])
 
