@@ -11,7 +11,7 @@ class PackageHashTable:
             self.table.append([])
 
     # This method will add a package into the Hashtable based on the key-index 0(PackageId)
-    # form csv file, package_file.csv
+    # from csv file, package_file.csv
     # Big O complexity is O(1)
     def add_package(self, key, value_package):
         value_package[0] = int(value_package[0])
@@ -68,8 +68,7 @@ list_of_packages = get_package_info(
     u'C:\\Users\\Vladan\\PycharmProjects\\TSP_data_structures_and_algorithms_II\\data\\package_file.csv')
 
 
-# print(list_of_packages.table)
-
+# This method will look through the hash table for the package by Id and display the info
 def get_package_by_id(package_info):
     package_found = list_of_packages.get_package(package_info)
     print(package_found)

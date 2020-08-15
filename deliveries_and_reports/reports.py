@@ -83,7 +83,7 @@ def make_deliveries():
 
     truck_2.end_time = truck_2.current_time
 
-    print('Packages that were delivered using truck number 1: ', *truck_2.loaded_packages, sep='\n')
+    print('Packages that were delivered using truck number 2: ', *truck_2.loaded_packages, sep='\n')
 
     # Deliveries for truck number 3
     start_truck_number_3 = truck_1.end_time
@@ -106,7 +106,7 @@ def make_deliveries():
 
     truck_3.end_time = truck_3.current_time
 
-    print('Packages that were delivered using truck number 1: ', *truck_3.loaded_packages, sep='\n')
+    print('Packages that were delivered using truck number 3: ', *truck_3.loaded_packages, sep='\n')
 
 
 # This method will provide package status at the particular time

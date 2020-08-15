@@ -6,7 +6,7 @@ from model.delivery_locations import *
 # from the hub. It will start from the hub "4001 South 700 East" and it will sort
 # the addresses that are attached to each package and determine the next location
 # among deliveries based on the shortest distance
-# Complexity is O(N^2)
+# Complexity is O(n log n)
 
 def greedy_algorithm_for_shortest_distance(truck_route):
     starting_point = '4001 South 700 East'

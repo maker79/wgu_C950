@@ -1,4 +1,3 @@
-from deliveries_and_reports.deliveries import *
 from deliveries_and_reports.reports import *
 
 # This method will define user interface from where all the requirements
@@ -37,7 +36,7 @@ def user_interface():
             current_package_status(9, 10, 0)
 
             print('************************************************************')
-            print('We need to correct the address for package number 9.')
+            print('It is 10:20am. We need to correct the address for package number 9.')
             update_pack_9_address = input('Enter [0] to exit the program\n'
                                           'Enter [1] to correct the address for package number 9')
 

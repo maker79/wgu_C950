@@ -71,7 +71,7 @@ def load_truck_get_the_route():
                 else:
                     print('Package cannot be loaded at this time. Please come back later!')
 
-    # Let's create some inefficient route that will be passed to algorithm to make it efficient
+    # Let's create some inefficient route to make deliveries and after apply algorithm to make it efficient
     # truck_1_inefficient_route = truck_1.truck_route
     # truck_1_inefficient_route.append('4001 South 700 East')
     # truck_2_inefficient_route = truck_2.truck_route

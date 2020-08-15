@@ -1,8 +1,4 @@
-from model.delivery_locations import locations
-from utilities.algo import greedy_algorithm_for_shortest_distance
-from utilities.hashtable import list_of_packages
-
-
+# This file is to create class Truck with fallowing methods
 class Truck:
 
     def __init__(self):
