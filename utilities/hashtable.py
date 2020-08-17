@@ -4,6 +4,8 @@ import csv
 # The goal of this hash table is to improve the speed of accessing the packages
 class PackageHashTable:
 
+    # This method is the constructor method initialized to empty
+    # Complexity is O(N)
     def __init__(self, capacity=32):
         self.table = []
 
